@@ -1,0 +1,5 @@
+<input type="file" (change)="fileChangeEvent($event)" accept="image/png, image/jpeg" />
+<button (click)="saveImage()">Save img</button>
+
+<image-cropper [resizeToWidth]="128" [cropperMinWidth]="128" [imageChangedEvent]="imageChangedEvent"
+  [maintainAspectRatio]="true" [aspectRatio]="3 / 3" format="png" (imageCropped)="imageCropped($event)"></image-cropper>
