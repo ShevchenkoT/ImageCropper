@@ -1,5 +1,26 @@
-<input type="file" (change)="fileChangeEvent($event)" accept="image/png, image/jpeg" />
-<button (click)="saveImage()">Save img</button>
+<div class="top-bar">
+  <h1>
+    Image Cropper
+  </h1>
+  <div class="top-bar__buttons">
+    <button class="btn" (click)="saveImage()">Save img</button>
+    <button class="btn" (click)="removeImage()">Remove img</button>
+  </div>
+</div>
 
-<image-cropper [resizeToWidth]="128" [cropperMinWidth]="128" [imageChangedEvent]="imageChangedEvent"
-  [maintainAspectRatio]="true" [aspectRatio]="3 / 3" format="png" (imageCropped)="imageCropped($event)"></image-cropper>
+<div class="content">
+  <div class="dropzone" *ngIf="!imageChangedEvent;else other_content" appDnd (fileDropped)="fileBrowseHandler($event)">
+    <input type="file" #fileDropRef id="fileDropRef" (change)="fileBrowseHandler($event) "
+      accept="image/png, image/jpeg" />
+    <h3>Drag and drop file here</h3>
+    <h3>or</h3>
+    <label class="btn" for="fileDropRef">Browse for file</label>
+  </div>
+
+  <ng-template #other_content>
+    <image-cropper [resizeToWidth]="128" [cropperMinWidth]="128" [imageChangedEvent]="imageChangedEvent"
+      [maintainAspectRatio]="true" [aspectRatio]="3 / 3" format="png" (imageCropped)="imageCropped($event)">
+    </image-cropper>
+  </ng-template>
+
+</div>

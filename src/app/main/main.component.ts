@@ -8,23 +8,31 @@ import { saveAs } from 'file-saver';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
-  imageChangedEvent!: Event;
+  imageChangedEvent!: Event | null;
   croppedImage: string = '';
 
   constructor() { }
-
-  fileChangeEvent(event: Event): void {
-    this.imageChangedEvent = event;
-  }
 
   imageCropped({ base64 }: any): void {
     this.croppedImage = base64;
     localStorage.setItem('croppedImg', this.croppedImage);
   }
-  saveImage() {
+
+  saveImage(): void {
     const croppedImg = localStorage.getItem('croppedImg');
     if (croppedImg) {
-      saveAs(croppedImg, `km.jpg`);
+      saveAs(croppedImg, `croppedImage.jpg`);
     }
   }
+
+  removeImage(): void {
+    this.imageChangedEvent = null;
+    this.croppedImage = '';
+    localStorage.removeItem('croppedImg');
+  }
+
+  fileBrowseHandler(event: Event) {
+    this.imageChangedEvent = event;
+  }
+
 }

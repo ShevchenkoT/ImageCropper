@@ -93,4 +93,25 @@ a {
 }
 
 /*--------------------*/
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+
+:root {
+  --dark-color: #212832;
+  --bg-color: #3b3e47;
+  --orange-color: #fd7014;
+  --white-color: #eeeeee;
+}
+
+body,
+html {
+  font-family: 'Poppins', sans-serif;
+}
+
+@media(max-width:576px) {
+
+  html,
+  body {
+    font-size: 9px;
+  }
+}
